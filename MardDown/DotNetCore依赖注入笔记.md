@@ -1,4 +1,4 @@
-#### SQLite 笔记
+#### .NET Core 笔记
 
 ##### 1. .NET Core生成带身份验证的MVC模板,并使用SQLite 
 
