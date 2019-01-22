@@ -4,7 +4,7 @@
 *前请确保已经有正常的Docker环境、本地已经安装了.NET Core SDK[此处为2.2]，这里是部署在Windows Server 2016上的Docker*
 ```
 
-![dockerinfo](images/docker-info.png)
+![dockerinfo](images/dockerinfo.png)
 
 #### 创建项目，确保项目正常运行
 
@@ -40,7 +40,7 @@ dotnet run
 >
 > **什么意思呢，也就是说，如果你没有在Asp.Net Core项目的Program.cs设置`UseUrl("ip+port")`，打包镜像并运在容器上时，Asp.Net Core 应用的将默认运行在容器的80端口，因此，在写DockerFile的时候，EXPOSE的端口，必须是80，用`docker run`命令运行容器的时候，也必须用80端口和容器主机的端口做映射，否则应用将无法访问，当然如果你天生骄傲，不喜欢用别人定的东西，也可以自己改，除了在Program.cs里设置`UseUrl("ip+port") `如下图，也可以在DockerFile里配置端口，写法大概是： `ENV ASPNETCORE_URLS=http://+:88`，不过后面一种方法我尝试失败了，可以自己试试。**
 >
-> ![](images/change default port.png)
+> ![](images/changedefaultport.png)
 
 ```dockerfile
 # 拉取sdk镜像，以便使用dotnet命令
@@ -85,7 +85,7 @@ ENTRYPOINT [ "dotnet","CoreWeb.dll" ]
  # 打包镜像步骤执行完毕后，看到Successfully built xxxxxx，Successfully targeted xxxx:xx 即为成功了，可用docker images查看镜像
 ```
 
-![](images/docker build.png)
+![](images/dockerbuild.png)
 
 #### 运行镜像，浏览器访问web
 
@@ -102,11 +102,11 @@ ENTRYPOINT [ "dotnet","CoreWeb.dll" ]
 
 > **用主机的IP+映射的端口号，即可访问，如下图**
 
-![](images/docker run.png)
+![](images/dockerrun.png)
 
 > **当然你也可以用容器的`URL+Port`访问，此处我们已经知道应用运行在容器的80端口上，但是却不知道容器 的IP是多少，要怎么做呢，运行`docker inspect myweb`命令，即可查看当前容器的配置信息，不过此处我们只关心IPAddress，运行后如下图：**
 >
-> ![dockerfile](images/docker inspect.png)
+> ![dockerfile](images/dockerinspect.png)
 >
 > ```powershell
 >  docker inspect myweb
