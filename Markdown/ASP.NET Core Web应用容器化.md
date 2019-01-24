@@ -38,7 +38,7 @@ dotnet run
 >
 > ------
 >
-> **什么意思呢，也就是说，如果你没有在Asp.Net Core项目的Program.cs设置UseUrl("http://+:port")，打包镜像并运在容器上时，Asp.Net Core 应用的将默认运行在容器的80端口，因此，在写DockerFile的时候，EXPOSE的端口，必须是80，用`docker run`命令运行容器的时候，也必须用80端口和容器主机的端口做映射，否则应用将无法访问，当然如果你天生骄傲，不喜欢用别人定的东西，也可以自己改，除了在Program.cs里设置`UseUrl("http://+:port") `如下图，也可以在DockerFile里配置端口，写法大概是： `ENV ASPNETCORE_URLS=http://+:88`，不过后面一种方法我尝试失败了，可以自己试试。**
+> **什么意思呢，也就是说，如果你没有在Asp.Net Core项目的Program.cs设置`UseUrl("http://+:port")`，打包镜像并运在容器上时，Asp.Net Core 应用的将默认运行在容器的80端口，因此，在写DockerFile的时候，EXPOSE的端口，必须是80，用`docker run`命令运行容器的时候，也必须用80端口和容器主机的端口做映射，否则应用将无法访问，当然如果你天生骄傲，不喜欢用别人定的东西，也可以自己改，除了在Program.cs里设置`UseUrl("http://+:port") `如下图，也可以在DockerFile里配置端口，写法大概是： `ENV ASPNETCORE_URLS=http://+:88`，不过后面一种方法我尝试失败了，可以自己试试。**
 >
 > ![](images/changedefaultport.png)
 
