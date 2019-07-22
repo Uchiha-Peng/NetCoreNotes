@@ -1,0 +1,40 @@
+安装curl
+sudo apt-get install curl
+1. 下载包
+curl -SL -o dotnet.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-linux-arm64.tar.gz
+2. 创建文件夹
+sudo mkdir -p /usr/share/dotnet
+
+3. 解压文件
+sudo tar -zxf dotnet.tar.gz -C /usr/share/dotnet
+
+4. 安装
+sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+
+5. 查看版本 
+dotnet --version
+
+6. 创建web项目
+dotnet new mvc --name coreweb
+
+7.运行web
+cd coreweb
+dotnet run
+
+8.手机浏览器访问web
+localhost:5001
+
+9.部署站点
+dotnet publish -c Release -o app
+
+9.安装net-tools，ifconfig-a查看IP
+sudo apt-get install curl
+ifconfig -a
+
+10.开放端口
+sudo apt-get install iptables
+
+sudo apt-get upgrade
+
+查看开放的端口
+sudo netstat -tlpn
